@@ -144,20 +144,26 @@ while True:
                         print('Mã sản phẩm không hợp lệ - Xin vui lòng nhập lại mã sản phẩm')
         case 3:
             while True:
+                found = False
                 id_add = input('Nhập mã sản phẩm cần nhập thêm:').strip().upper()
                 for values in product_list:
                     if id_add == values['product_id']:
                         while True:
                             try:
-                                quantity_input = int(input('Nhập số lượng cần thêm: ')).strip().upper()
+                                quantity_input = int(input('Nhập số lượng cần thêm: '))
                                 if quantity_input < 0:
                                     print('Bạn phải nhập số nguyên dương lớn hơn 0')
                                 else:
+                                    found = True
                                     values['quantity'] += quantity_input
-                                    print(f'Bạn đã thêm {quantity_input} sản phẩm')
                                     break
                             except:
                                 print('Bạn không được nhập chữ - Xin vui lòng nhập lại')
+                if found == True:
+                    print(f'Bạn đã thêm {quantity_input} sản phẩm')
+                    break
+                else:
+                    print('Mã sản phẩm không hợp lệ - Xin vui lòng nhập lại mã')
         case 4:
             print('===== BÁO CÁO DOANH THU CỬA HÀNG YODY =====')
             total_revenue = 0
